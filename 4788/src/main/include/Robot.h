@@ -19,7 +19,7 @@
 #include "controllers/Controllers.h"
 #include "Gearbox.h"
 #include "actuators/BinaryServo.h"
-#include "actuators/Compressor.h"
+#include "actuators/Compressor.h" 
 #include "actuators/DoubleSolenoid.h"
 #include "actuators/VoltageController.h"
 #include "sensors/Encoder.h"
@@ -51,11 +51,17 @@ class Robot : public frc::TimedRobot {
 
 	//controllers
 	frc::XboxController *xbox;
+	frc::XboxController *xbox2;
 
  private:
 	//motors
 	frc::Spark *_sparkMotor;
-	wml::TalonSrx *_talonMotor;
+
+
+	wml::TalonSrx *_talonMotorL;
+	wml::TalonSrx *_talonMotorR;
+	wml::VictorSpx *_victorSpxMotorL;
+	wml::VictorSpx *_victorSpxMotorR;
 
 	//pneumatics stuff
 	wml::actuators::Compressor _compressor{};
