@@ -1,5 +1,6 @@
 #pragma once
 #include "RobotMap.h"
+#include "strategy/StrategySystem.h"
 
 
 class Climber {
@@ -16,5 +17,6 @@ class Climber {
   private :
 		wml::controllers::SmartControllerGroup &_contGroup;
 		wml::TalonSrx &_ClimberMotor;
-		bool _ClimberToggle = false;
+		int _previousTicks;
+		int _currentTicks;
 };

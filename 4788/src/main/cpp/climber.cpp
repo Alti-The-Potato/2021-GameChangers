@@ -9,17 +9,30 @@ Climber::Climber(SmartControllerGroup &contGroup,
 
 								_contGroup(contGroup),
 								_ClimberMotor(ClimberMotor) {
+								_previousTicks = _ClimberMotor.GetEncoderTicks();
 }
 
 void Climber::TeleopOnUpdate(double dt) {
 
+	_currentTicks = _ClimberMotor.GetEncoderTicks();
+
 	// If button is pressed pull on the string to raise climber
 	if(_contGroup.Get(ControlMap::ClimberUp, Controller::ONRISE)) {
-		_ClimberMotor.Set(ControlMap::ClimberSpeed);
+		
+		// Check if the motor is jammed
+		if (_currentTicks - _previousTicks < ControlMap::ClimberJamTolerance) {
+			_ClimberMotor.Set(0);
+		} else {
+			_ClimberMotor.Set(ControlMap::ClimberSpeed);
+		}
 
 	// If button is pressed release the string to lower climber
 	} else if (_contGroup.Get(ControlMap::ClimberDown, Controller::ONRISE)) {
-		_ClimberMotor.Set(-ControlMap::ClimberSpeed);
+		if (_previousTicks - _currentTicks < ControlMap::ClimberJamTolerance) {
+			_ClimberMotor.Set(0);
+		} else {
+			_ClimberMotor.Set(-ControlMap::ClimberSpeed);
+		}
 
 	// If no button is pressed stop
 	} else {
