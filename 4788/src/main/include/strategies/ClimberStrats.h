@@ -11,7 +11,5 @@ class ClimberManualStrategy : public wml::Strategy {
 	private:
 		Climber &_climber;
 		Controllers &_contGroup;
-		int _currentTicks;
-		int _previousTicks;
 
 };

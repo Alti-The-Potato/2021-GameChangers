@@ -42,7 +42,7 @@ const double ControlMap::Mass = 50; // KG's
 // Climber System
 const int ControlMap::ClimberAuctuationPort1 = 1;
 const int ControlMap::ClimberAuctuationPort2 = 2;
-const int ControlMap::ClimberAuctuationTime = 2;
+const double ControlMap::ClimberAuctuationTime = 2;
 
 // ------------------ Values ------------------
 // Drive train

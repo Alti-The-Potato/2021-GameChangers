@@ -3,32 +3,14 @@
 ClimberManualStrategy::ClimberManualStrategy(std::string name, Climber &climber, Controllers &contGroup) : Strategy(name), _climber(climber), _contGroup(contGroup){}
 
 void ClimberManualStrategy::OnUpdate(double dt) {
-	_currentTicks = _climber.climberEncoderValue();
 
-	// If button is pressed pull on the string to raise climber
+	// If button is pressed make the climber go up
 	if(_contGroup.Get(ControlMap::ClimberUp, wml::controllers::Controller::ONRISE)) {
+		_climber.setClimber(ClimberState::NORMAL, wml::actuators::BinaryActuatorState::kForward);
 
-		// Check if the climber is jammed
-		if (_currentTicks - _previousTicks < ControlMap::ClimberJamTolerance) {
-			_climber.setClimber(ClimberState::JAMMED);
-		} else {
-		// Make climber go up
-		_climber.setClimber(ClimberState::NORMAL, ControlMap::ClimberSpeed);
-		}
-
-	// If button is pressed release the string to lower climber
+	// If button is pressed make the climber go down
 	} else if (_contGroup.Get(ControlMap::ClimberDown, wml::controllers::Controller::ONRISE)) {
+		_climber.setClimber(ClimberState::NORMAL, wml::actuators::BinaryActuatorState::kReverse);
 
-		// Check if the climber is jammed
-		if (_previousTicks - _currentTicks < ControlMap::ClimberJamTolerance) {
-			_climber.setClimber(ClimberState::JAMMED);
-		} else {
-			//Make climber go down
-			_climber.setClimber(ClimberState::NORMAL, -ControlMap::ClimberSpeed);
-		}
-
-	// If no button is pressed stop
-	} else {
-		_climber.setClimber(ClimberState::NORMAL, 0);
 	}
 }

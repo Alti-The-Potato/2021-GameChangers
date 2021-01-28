@@ -29,7 +29,7 @@ void Robot::RobotInit() {
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
 
 	// Climber
-	climber = new Climber(robotMap.climber.climberMotor);
+	climber = new Climber(robotMap.climber.ClimberAuct);
 
 	climber->SetDefault(std::make_shared<ClimberManualStrategy>("Climber Manual", *climber, robotMap.contGroup));
 
