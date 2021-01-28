@@ -7,25 +7,22 @@ using namespace wml::controllers;
 Climber::Climber(actuators::DoubleSolenoid &ClimberAuct) : _climberAuct(ClimberAuct) {
 }
 
-void Climber::setClimber(const ClimberState st, double power) {
+void Climber::setClimber(const ClimberState st, actuators::BinaryActuatorState cST) {
 	_climberState = st;
-	_power = power;
+	_climberAuctState = cST;
 }
 
 void Climber::updateClimber (double dt) {
-	double speed = 0;
+	// Setup actuator state shenanigans
+	actuators::BinaryActuatorState state = actuators::BinaryActuatorState::kReverse;
 
 	switch (_climberState) {
 		case ClimberState::NORMAL:
-			speed = _power;
-			break;
-		
-		case ClimberState::JAMMED:
-			speed = 0;
+			state = _climberAuctState;
 			break;
 	}
 
-	_climberMotor.Set(speed);
+	_climberAuct.SetTarget(state);
 }
 
 void Climber::update (double dt) {

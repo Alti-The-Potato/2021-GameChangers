@@ -19,10 +19,10 @@ class Climber : public wml::StrategySystem{
 
 		// Update (master loop for Climber)
 		void update (double dt);
-
-		int climberEncoderValue();
+		
 		/*
-		// Setup Functions
+		Setup Functions:
+
 		void TeleopOnUpdate (double dt);
 		void AutoOnUpdate(double dt);
  		void TestOnUpdate(double dt);
@@ -32,5 +32,5 @@ class Climber : public wml::StrategySystem{
 		wml::actuators::DoubleSolenoid &_climberAuct;
 		ClimberState _climberState{ ClimberState::NORMAL };
 
-		wml::actuators::BinaryActuatorState state;
+		wml::actuators::BinaryActuatorState _climberAuctState;
 };
