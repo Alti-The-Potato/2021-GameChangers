@@ -3,17 +3,16 @@
 #include "RobotMap.h"
 
 enum class ClimberState {
-	NORMAL,
-	JAMMED
+	NORMAL
 };
 
 class Climber : public wml::StrategySystem{
   public :
 	// Constructor
-    Climber(wml::TalonSrx &ClimberMotor);
+    Climber(wml::actuators::DoubleSolenoid &ClimberAuct);
 
 		//Set climber state and power
-		void setClimber(const ClimberState, double power = 0);
+		void setClimber(const ClimberState, wml::actuators::BinaryActuatorState = wml::actuators::BinaryActuatorState::kReverse);
 
 		// Looping and update for climber
 		void updateClimber(double dt);
@@ -30,8 +29,8 @@ class Climber : public wml::StrategySystem{
 		 */
 
   private :
-		wml::TalonSrx &_climberMotor;
+		wml::actuators::DoubleSolenoid &_climberAuct;
 		ClimberState _climberState{ ClimberState::NORMAL };
 
-		double _power;
+		wml::actuators::BinaryActuatorState state;
 };

@@ -94,6 +94,6 @@ struct RobotMap {
 	}; DriveSystem driveSystem;
 
 	struct Climber {
-		wml::TalonSrx climberMotor{ControlMap::ClimberPort, ControlMap::ClimberEncoderTicks};
+		wml::actuators::DoubleSolenoid ClimberAuct { ControlMap::PCModule, ControlMap::ClimberAuctuationPort1, ControlMap::ClimberAuctuationPort2, ControlMap::ClimberAuctuationTime };
 	}; Climber climber;
 };

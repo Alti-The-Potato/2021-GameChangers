@@ -36,10 +36,9 @@ struct ControlMap {
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	// Climber System
-	static const int ClimberPort;
-	static const int ClimberEncoderTicks;
-	static const double ClimberSpeed;
-	static const int ClimberJamTolerance;
+	static const int ClimberAuctuationPort1, ClimberAuctuationPort2;
+	static const double ClimberAuctuationTime;
+
 
 
 	// ------------------ Controls ------------------

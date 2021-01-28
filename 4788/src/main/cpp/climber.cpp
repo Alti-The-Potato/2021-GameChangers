@@ -4,11 +4,7 @@
 using namespace wml;
 using namespace wml::controllers;
 
-Climber::Climber(TalonSrx &ClimberMotor) : _climberMotor(ClimberMotor) {
-}
-
-int Climber::climberEncoderValue() {
-	return(_climberMotor.GetEncoderTicks());
+Climber::Climber(actuators::DoubleSolenoid &ClimberAuct) : _climberAuct(ClimberAuct) {
 }
 
 void Climber::setClimber(const ClimberState st, double power) {
