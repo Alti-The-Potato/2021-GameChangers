@@ -15,6 +15,7 @@ struct ControlMap {
 
 
 	// ------------------ Values ------------------
+	// Everything under here is our values, make sure you put your values under this
 
 	// Controllers
 	static const int Xbox1Port, Xbox2Port;
@@ -35,9 +36,22 @@ struct ControlMap {
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
+	// Example
+	static const double ExampleMotorPort, ExampleSolanoidPort1, ExampleSolanoidPort2;
+	static const int ExampleEncoderTicks;
+	// This is creating the static constant variables, which we'll assign in ContorlMap.cpp
+
 
 	// ------------------ Controls ------------------
-	
+	//Guess where all the controls go under
+
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
+
+	//Example
+	static const wml::controllers::tAxis ExampleMotorInput;
+	// This is creating a controller input that uses an axis (triggers, joystick, etc.)
+
+	static const wml::controllers::tButton ExampleSolanoidUp, ExampleSolanoidDown;
+	// This is creating a controller input that uses buttons (A, B, etc.)
 };

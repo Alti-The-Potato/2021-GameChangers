@@ -92,4 +92,25 @@ struct RobotMap {
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
+
+	// This is placed in the underlying struct of RobotMap
+	struct Example {
+		wml::TalonSrx exampleMotor {ControlMap::ExampleMotorPort, ControlMap::ExampleEncoderTicks};
+		// This creates a motor it requires a port ^^				and the amount of encoder ticks ^^
+
+		// This creates a solanoid (controls pneumatics)
+		// Note, this formating is only so it all fits on the screet, its not necessary
+		// It requires:
+		wml::actuators::DoubleSolenoid exampleSolanoid {
+																									// PC module (already assigned by someone smart)
+																										ControlMap::PCModule,
+
+																										// Two ports
+																										ControlMap::ExampleSolanoidPort1,
+																										ControlMap::ExampleSolanoidPort2,
+
+																										// Actuation time (lower = faster)
+																										0.1
+																										};
+	};
 };

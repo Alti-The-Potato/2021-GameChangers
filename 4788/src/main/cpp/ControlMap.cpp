@@ -39,6 +39,19 @@ const double ControlMap::TrackDepth = 0.60;
 const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
-// ------------------ Values ------------------
+// Example Values
+const double ControlMap::ExampleMotorPort = 6;  // Different ports (Ask what they actually are)
+const double ControlMap::ExampleSolanoidPort1 = 7;
+const double ControlMap::ExampleSolanoidPort2 = 8;
+const int ControlMap::ExampleEncoderTicks = 2048; // Amount of ticks per rotation
+
+// ------------------ Controls ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
+
+// Example Controls
+// Note, due to a using statement further up the code, we don't have to type wml::controllers::xxxx
+// taxis and tbutton take in which controler (Driver or CoDriver) and a button (use intellisence)
+const tAxis ControlMap::ExampleMotorInput{ Driver, XboxController::kLeftThrottle };
+const tButton ControlMap::ExampleSolanoidUp { Driver, XboxController::kA };
+const tButton ControlMap::ExampleSolanoidDown { Driver, XboxController::kY };
