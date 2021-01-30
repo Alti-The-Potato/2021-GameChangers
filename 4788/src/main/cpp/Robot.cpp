@@ -19,6 +19,9 @@ double dbRightSpeed = 0;
 //double victorSpeed;
 double constexpr deadzone = 0.1;
 
+double maxSpeed = 0.8;
+double waitTime = 1; // In seconds
+
 // Robot Logic
 void Robot::RobotInit() {
 	//init controllers
@@ -28,18 +31,18 @@ void Robot::RobotInit() {
 
 	_testMotor->SetInverted(false);
 
-// 	//Motor examples
-// //	_sparkMotor = new frc::Spark(0);
-// 	_talonMotorL = new wml::TalonSrx(1);
-// 	_talonMotorR = new wml::TalonSrx(2);
-// 	_victorSpxMotorL = new wml::VictorSpx(8);
-// 	_victorSpxMotorR = new wml::VictorSpx(9);
+	// 	//Motor examples
+	// //	_sparkMotor = new frc::Spark(0);
+	// 	_talonMotorL = new wml::TalonSrx(1);
+	// 	_talonMotorR = new wml::TalonSrx(2);
+	// 	_victorSpxMotorL = new wml::VictorSpx(8);
+	// 	_victorSpxMotorR = new wml::VictorSpx(9);
 
-// //	_sparkMotor->SetInverted(true);
-// 	_talonMotorL->SetInverted(false);
-// 	_talonMotorR->SetInverted(false);
-// 	_victorSpxMotorL->SetInverted(false);
-// 	_victorSpxMotorR->SetInverted(false);
+	// //	_sparkMotor->SetInverted(true);
+	// 	_talonMotorL->SetInverted(false);
+	// 	_talonMotorR->SetInverted(false);
+	// 	_victorSpxMotorL->SetInverted(false);
+	// 	_victorSpxMotorR->SetInverted(false);
 }
 
 void Robot::RobotPeriodic() {}
@@ -49,8 +52,31 @@ void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 
 // Auto Robot Logic
-void Robot::AutonomousInit() {}
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousInit() {
+	_timer.Reset();
+	_timer.Start();
+	goFwrd = true;
+}
+void Robot::AutonomousPeriodic() {
+
+	if (_timer.Get() >= 1) {
+		if (goFwrd == true) {
+			goFwrd = false;
+			_timer.Reset();
+			_timer.Start();
+		} else {
+			goFwrd = true;
+			_timer.Reset();
+			_timer.Start();
+		}
+	}
+
+	if (goFwrd == true) {
+		_testMotor->Set(maxSpeed);
+	} else {
+		_testMotor->Set(-maxSpeed);
+	}
+}
 
 // Manual Robot Logic
 void Robot::TeleopInit() {}
@@ -58,41 +84,39 @@ void Robot::TeleopPeriodic() {
 	currentTime = Timer::GetFPGATimestamp();
 	dt = currentTime - lastTimeStamp;
 
-	bool motorOnForward = false;
-	bool motorOnBackward = false;
 
 	// If the button is pressed and the motor isn't already on make motor go brrrr
-	if (xbox->GetYButtonPressed() && motorOnForward == false) {
-		motorOnForward = true;
+	if (xbox->GetYButtonPressed() && _motorOnForward == false) {
+		_motorOnForward = true;
 	} else {
 	// If the button is pressed and the motor is already on turn the motor off
-		motorOnForward = false;
+		_motorOnForward = false;
 	}
 
 	// Same but for backwards control
-	if (xbox->GetAButtonPressed() && motorOnBackward == false) {
-		motorOnBackward = true;
+	if (xbox->GetAButtonPressed() && _motorOnBackward == false) {
+		_motorOnBackward = true;
 	} else {
-		motorOnBackward = false;
+		_motorOnBackward = false;
 	}
 
-	if (motorOnForward) {
-		if (motorOnBackward) {
+	if (_motorOnForward) {
+		if (_motorOnBackward) {
 			// Makes it so pressing the button for the opposite direction cancels out
 			_testMotor->Set(0);
-			motorOnForward = false;
-			motorOnBackward = false;
+			_motorOnForward = false;
+			_motorOnBackward = false;
 		} else {
-			_testMotor->Set(1);
+			_testMotor->Set(maxSpeed);
 		}
-	} else if (motorOnBackward) {
-		if (motorOnForward) {
+	} else if (_motorOnBackward) {
+		if (_motorOnForward) {
 			// Makes it so pressing the button for the opposite direction cancels out
 			_testMotor->Set(0);
-			motorOnForward = false;
-			motorOnBackward = false;
+			_motorOnForward = false;
+			_motorOnBackward = false;
 		} else {
-			_testMotor->Set(-1);
+			_testMotor->Set(-maxSpeed);
 		}
 	}
 }

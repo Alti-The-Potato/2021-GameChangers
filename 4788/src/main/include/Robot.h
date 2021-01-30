@@ -51,7 +51,7 @@ class Robot : public frc::TimedRobot {
 
 	//controllers
 	frc::XboxController *xbox;
-	frc::XboxController *xbox2;
+	// frc::XboxController *xbox2;
 
  private:
 	//motors
@@ -64,6 +64,11 @@ class Robot : public frc::TimedRobot {
 	// wml::VictorSpx *_victorSpxMotorR;
 
 	 wml::TalonSrx *_testMotor;
+	 frc::Timer _timer;
+	 bool goFwrd;
+
+	 bool _motorOnForward = false;
+	 bool _motorOnBackward = false;
 
 	//pneumatics stuff
 	// wml::actuators::Compressor _compressor{};
