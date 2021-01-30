@@ -37,7 +37,7 @@ struct ControlMap {
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	// Example
-	static const double ExampleMotorPort, ExampleSolanoidPort1, ExampleSolanoidPort2;
+	static const int ExampleMotorPort, ExampleSolanoidPort1, ExampleSolanoidPort2;
 	static const int ExampleEncoderTicks;
 	// This is creating the static constant variables, which we'll assign in ContorlMap.cpp
 

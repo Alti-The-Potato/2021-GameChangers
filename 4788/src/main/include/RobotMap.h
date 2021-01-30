@@ -112,5 +112,5 @@ struct RobotMap {
 																										// Actuation time (lower = faster)
 																										0.1
 																										};
-	};
+	}; Example example; // This creates an instance of our stuct
 };

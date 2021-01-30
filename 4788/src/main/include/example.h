@@ -17,7 +17,7 @@ enum class ExampleState {
 class Example : wml::StrategySystem {
 	public: // This means that these functions are accessible by others OUTSIDE the class
 	
-	 Example(wml::TalonSrx, wml::actuators::DoubleSolenoid);
+	 Example(wml::TalonSrx &exampleMotor, wml::actuators::DoubleSolenoid &exampleSolanoid);
 	 // ^^ This is a constructor and it allows an outside function to set the variables
 	 // ^^ Note: it is named the EXACT SAME as the class
 
@@ -38,5 +38,5 @@ class Example : wml::StrategySystem {
 
 	 ExampleState _exampleState{ ExampleState::LOWERED };
 	 // ^^ Private instance of the example state. Note it's default is LOWERED
-}
+};
 

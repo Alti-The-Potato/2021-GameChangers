@@ -40,9 +40,9 @@ const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
 // Example Values
-const double ControlMap::ExampleMotorPort = 6;  // Different ports (Ask what they actually are)
-const double ControlMap::ExampleSolanoidPort1 = 7;
-const double ControlMap::ExampleSolanoidPort2 = 8;
+const int ControlMap::ExampleMotorPort = 6;  // Different ports (Ask what they actually are)
+const int ControlMap::ExampleSolanoidPort1 = 7;
+const int ControlMap::ExampleSolanoidPort2 = 8;
 const int ControlMap::ExampleEncoderTicks = 2048; // Amount of ticks per rotation
 
 // ------------------ Controls ------------------
