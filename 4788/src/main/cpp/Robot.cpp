@@ -58,18 +58,43 @@ void Robot::TeleopPeriodic() {
 	currentTime = Timer::GetFPGATimestamp();
 	dt = currentTime - lastTimeStamp;
 
-	if (xbox->GetYButtonPressed()) {
-		_testMotor->Set(1);
+	bool motorOnForward = false;
+	bool motorOnBackward = false;
+
+	// If the button is pressed and the motor isn't already on make motor go brrrr
+	if (xbox->GetYButtonPressed() && motorOnForward == false) {
+		motorOnForward = true;
 	} else {
-		_testMotor->Set(0);
+	// If the button is pressed and the motor is already on turn the motor off
+		motorOnForward = false;
 	}
 
-	if (xbox->GetAButtonPressed()) {
-		_testMotor->Set(-1);
+	// Same but for backwards control
+	if (xbox->GetAButtonPressed() && motorOnBackward == false) {
+		motorOnBackward = true;
 	} else {
-		_testMotor->Set(0);
+		motorOnBackward = false;
 	}
 
+	if (motorOnForward) {
+		if (motorOnBackward) {
+			// Makes it so pressing the button for the opposite direction cancels out
+			_testMotor->Set(0);
+			motorOnForward = false;
+			motorOnBackward = false;
+		} else {
+			_testMotor->Set(1);
+		}
+	} else if (motorOnBackward) {
+		if (motorOnForward) {
+			// Makes it so pressing the button for the opposite direction cancels out
+			_testMotor->Set(0);
+			motorOnForward = false;
+			motorOnBackward = false;
+		} else {
+			_testMotor->Set(-1);
+		}
+	}
 }
 
 // Test Logic
