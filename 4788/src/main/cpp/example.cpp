@@ -6,3 +6,13 @@
 Example::Example(wml::TalonSrx &exampleMotor, wml::actuators::DoubleSolenoid &exampleSolanoid) :
 _exampleMotor(exampleMotor), _exampleSolanoid(exampleSolanoid) {}
 
+// This is the function that we'll call from our stratergies. Using this, we can give the updateExample
+// function the STATE and the 
+void Example::updateExample (ExampleState st, double power) {
+	_exampleState = st;
+	_power = power;
+}
+
+void Example::updateExample (double dt) {
+
+}

@@ -38,5 +38,7 @@ class Example : wml::StrategySystem {
 
 	 ExampleState _exampleState{ ExampleState::LOWERED };
 	 // ^^ Private instance of the example state. Note it's default is LOWERED
+
+	 double _power;
 };
 
