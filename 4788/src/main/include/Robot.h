@@ -1,6 +1,9 @@
 #pragma once
 #include "RobotMap.h"
 
+// Subsystems
+#include "strategies/exampleStrategy.h"
+
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:
 	void RobotInit() override;
@@ -22,4 +25,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	// Istances
 	RobotMap robotMap;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
+	Example *example;
 };

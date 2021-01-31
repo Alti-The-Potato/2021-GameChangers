@@ -28,8 +28,14 @@ void Robot::RobotInit() {
 	drivetrain->GetConfig().rightDrive.transmission->SetInverted(true);
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
 
+	// Example subsystem
+	example = new Example(robotMap.example.exampleMotor);
+
+	example->SetDefault(std::make_shared<ExampleManualStrategy>("Example Manual", *example, robotMap.contGroup));
+
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
+	StrategyController::Register(example);
 	NTProvider::Register(drivetrain);
 }
 
@@ -38,6 +44,7 @@ void Robot::RobotPeriodic() {
 	dt = currentTimeStamp - lastTimeStamp;
 
 	StrategyController::Update(dt);
+	example->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
