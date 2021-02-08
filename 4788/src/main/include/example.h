@@ -14,7 +14,7 @@ enum class ExampleState {
 	LOWERED
 };
 
-class Example : wml::StrategySystem {
+class Example : public wml::StrategySystem {
 	public: // This means that these functions are accessible by others OUTSIDE the class
 	
 	 Example(wml::TalonSrx &exampleMotor, wml::actuators::DoubleSolenoid &exampleSolanoid);

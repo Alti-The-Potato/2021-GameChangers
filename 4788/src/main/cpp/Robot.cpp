@@ -29,7 +29,7 @@ void Robot::RobotInit() {
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
 
 	// Example subsystem
-	example = new Example(robotMap.example.exampleMotor);
+	example = new Example(robotMap.example.exampleMotor, robotMap.example.exampleSolanoid);
 
 	example->SetDefault(std::make_shared<ExampleManualStrategy>("Example Manual", *example, robotMap.contGroup));
 
