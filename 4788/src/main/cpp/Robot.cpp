@@ -31,6 +31,7 @@ void Robot::RobotInit() {
 	// Example subsystem
 	example = new Example(robotMap.example.exampleMotor, robotMap.example.exampleSolanoid);
 
+	// Set the default stratergy to the manual stratergy
 	example->SetDefault(std::make_shared<ExampleManualStrategy>("Example Manual", *example, robotMap.contGroup));
 
 	// Register our systems to be called via strategy
@@ -61,6 +62,7 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
+	Schedule(example->GetDefaultStrategy(), true); // Use the example manual stratergy
 }
 void Robot::TeleopPeriodic() {}
 

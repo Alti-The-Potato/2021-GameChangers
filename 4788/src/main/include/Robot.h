@@ -25,5 +25,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	// Istances
 	RobotMap robotMap;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
-	Example *example;
+	Example *example; // Create an instance of our example class
 };

@@ -12,7 +12,8 @@ ExampleManualStrategy::ExampleManualStrategy (std::string name, Example &example
 // based off inputs and other fancy stuff. This is what you have been coding for. Pog amirite?
 void ExampleManualStrategy::OnUpdate (double dt) {
 
-	// This is an interesting statement as it uses the ternary operator. What is that, well its like a compacted if statement and its usefull in cases like this
+	// This is an interesting statement as it uses the ternary operator. What is that, well its like a
+	// compacted if statement and its usefull in cases like this
 	// This is the equivalant of typing out this:
 	// if (fabs(_contGroup.Get(ControlMap::ExampleMotorInput)) > ControlMap::TriggerDeadzone) {
 	// 	power = _contGroup.Get(ControlMap::ExampleMotorInput)
