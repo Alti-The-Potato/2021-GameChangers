@@ -3,27 +3,25 @@
 #include "RobotMap.h"
 
 enum class ClimberState {
-	ENABLED,
-	EXTENDING,
-	DISABLED,
-	JAMMED
+	kEnabled = 0,
+	kDisabled,
+	kExtending
 };
 
-class Climber : public wml::StrategySystem{
+class Climber : public wml::StrategySystem, public wml::devices::StateDevice<ClimberState> {
   public :
 	// Constructor
     Climber(wml::TalonSrx &ClimberMotor);
 
-		//Set climber state and power
-		void setClimber(const ClimberState, double power = 0);
+		void Down();
 
-		// Looping and update for climber
-		void updateClimber(double dt);
+		void Extend(double power);
 
-		// Update (master loop for Climber)
-		void update (double dt);
+		void Activated(double power);
 
-		int climberEncoderValue();
+		void OnStatePeriodic(ClimberState state, double dt) override;
+
+		
 
   private :
 		wml::TalonSrx &_climberMotor;
