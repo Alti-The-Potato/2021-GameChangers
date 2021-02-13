@@ -14,16 +14,5 @@ class ClimberManualStrategy : public wml::Strategy {
 	private:
 		Climber &_climber;
 		Controllers &_contGroup;
+		
 };
-
-class ClimberExtendingStrategy : public wml::Strategy {
-	public:
-		ClimberExtendingStrategy(std::string name, Climber &climber);
-
-		void OnUpdate(double dt) override;
-	private:
-	 Climber &_climber;
-	 Controllers &_contGroup;
-	 int _currentTicks;
-	 int _previousTicks;
-}

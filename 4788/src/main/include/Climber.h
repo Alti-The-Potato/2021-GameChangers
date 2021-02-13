@@ -5,7 +5,13 @@
 enum class ClimberState {
 	kEnabled = 0,
 	kDisabled,
-	kExtending
+	kExtending,
+	kRetracting
+};
+
+enum class RequestState {
+	kToggle = 0,
+	kMove
 };
 
 class Climber : public wml::StrategySystem, public wml::devices::StateDevice<ClimberState> {
@@ -13,11 +19,11 @@ class Climber : public wml::StrategySystem, public wml::devices::StateDevice<Cli
 	// Constructor
     Climber(wml::TalonSrx &ClimberMotor);
 
-		void Down();
+		void DeActivate();
 
-		void Extend(double power);
+		void Extend();
 
-		void Activated(double power);
+		void setClimber(ClimberState state, double power = 0);
 
 		void OnStatePeriodic(ClimberState state, double dt) override;
 
