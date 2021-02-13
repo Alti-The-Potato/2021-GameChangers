@@ -25,14 +25,6 @@ class Climber : public wml::StrategySystem{
 
 		int climberEncoderValue();
 
-		
-		/*
-		// Setup Functions
-		void TeleopOnUpdate (double dt);
-		void AutoOnUpdate(double dt);
- 		void TestOnUpdate(double dt);
-		 */
-
   private :
 		wml::TalonSrx &_climberMotor;
 		ClimberState _climberState{ ClimberState::DISABLED };
