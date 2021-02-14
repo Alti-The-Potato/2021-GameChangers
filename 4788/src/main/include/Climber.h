@@ -14,24 +14,26 @@ enum class RequestState {
 	kMove
 };
 
-class Climber : public wml::StrategySystem, public wml::devices::StateDevice<ClimberState> {
+class Climber : public wml::StrategySystem {
   public :
 	// Constructor
     Climber(wml::TalonSrx &ClimberMotor);
 
-		void DeActivate();
+		void Retract();
 
 		void Extend();
 
-		void setClimber(ClimberState state, double power = 0);
+		void setClimber(RequestState state, double power);
 
-		void OnStatePeriodic(ClimberState state, double dt) override;
+		void ClimberLoop(double dt);
+
+		void update(double dt);
 
 		
 
   private :
 		wml::TalonSrx &_climberMotor;
-		ClimberState _climberState{ ClimberState::DISABLED };
+		ClimberState _climberState{ ClimberState::kDisabled };
 
 		double _power;
 };

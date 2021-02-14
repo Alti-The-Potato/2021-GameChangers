@@ -48,7 +48,6 @@ struct ControlMap {
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 
 	// Climber
-	static const wml::controllers::tButton ClimberActivate, ClimberDeactivate;
+	static const wml::controllers::tButton ClimberToggle;
 	static const wml::controllers::tAxis ClimberAdjust;
-	static const wml::controllers::tButton ClimberUp, ClimberDown;
 };

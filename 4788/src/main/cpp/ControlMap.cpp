@@ -51,8 +51,5 @@ const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 
 // Climber
-const tButton ControlMap::ClimberUp{ Driver, XboxController::kY };
-const tButton ControlMap::ClimberDown{ Driver, XboxController::kA };
-const tButton ControlMap::ClimberActivate{ CoDriver, XboxController::kB };
-const tButton ControlMap::ClimberDeactivate{ CoDriver, XboxController::kBottom };
+const tButton ControlMap::ClimberToggle{ CoDriver, XboxController::kB };
 const tAxis ControlMap::ClimberAdjust{ CoDriver, XboxController::kLeftYAxis };

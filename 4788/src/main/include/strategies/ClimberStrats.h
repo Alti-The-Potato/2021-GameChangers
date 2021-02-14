@@ -9,10 +9,9 @@ class ClimberManualStrategy : public wml::Strategy {
 
 		void OnUpdate(double dt) override;
 
-		Requires(dt);
-		SetTimeout(5);	
 	private:
 		Climber &_climber;
 		Controllers &_contGroup;
+		double _power;
 		
 };
